@@ -14,7 +14,6 @@ public class JpaMain {
         tx.begin();
 
         try {
-
             Team team = new Team();
             team.setName("teamA");
             em.persist(team);
