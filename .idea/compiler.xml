@@ -9,5 +9,8 @@
         <module name="jpql" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="jpql" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
