@@ -38,18 +38,17 @@ public class JpaMain {
             member3.setTeam(teamB);
             em.persist(member3);
 
-            em.flush();
+            //FLUSH 자동 호출 commit, query 수행시 자동 호출 or 강제 flush
+            int resultCount = em.createQuery("update Member m set m.age = 20")
+                    .executeUpdate();
+
+            System.out.println("resultCount = " + resultCount);
+
             em.clear();
 
-            String query = "select m from Member m where m.team = :team";
+            Member findMember = em.find(Member.class, member1.getId());
 
-            List<Member> result = em.createNamedQuery("Member.findByUsername", Member.class)
-                    .setParameter("username", "회원1")
-                    .getResultList();
-
-            for (Member member : result) {
-                System.out.println("member = " + member);
-            }
+            System.out.println("findMember = " + findMember.getAge());
 
             tx.commit();
         } catch (Exception e) {
